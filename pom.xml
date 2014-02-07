@@ -11,5 +11,6 @@
 
 	<modules>
 		<module>twitter-jms</module>
+		<module>twitter-activemq</module>
 	</modules>
 </project>

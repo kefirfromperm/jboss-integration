@@ -10,6 +10,7 @@ import javax.jms.TextMessage;
 
 /**
  * Listen JMS messages and sends to Twitter.
+ *
  * @author Vitaliy Samolovskikh
  */
 public class JmsListener implements MessageListener {
@@ -17,14 +18,16 @@ public class JmsListener implements MessageListener {
 
 	@Override
 	public void onMessage(Message message) {
-		if(message instanceof TextMessage){
-			try {
-				twitter.updateStatus(((TextMessage) message).getText());
-			} catch (TwitterException e) {
-				e.printStackTrace();
-			} catch (JMSException e) {
-				e.printStackTrace();
+		try {
+			if (message instanceof TextMessage) {
+				String text = ((TextMessage) message).getText();
+				System.out.println("Received message: " + text);
+				twitter.updateStatus(text);
 			}
+		} catch (TwitterException e) {
+			e.printStackTrace();
+		} catch (JMSException e) {
+			e.printStackTrace();
 		}
 	}
 

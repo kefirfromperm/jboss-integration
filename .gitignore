@@ -8,3 +8,6 @@
 # IntelliJ IDEA #
 *.iml
 .idea
+
+# Twitter connection properties #
+twitter4j.properties
